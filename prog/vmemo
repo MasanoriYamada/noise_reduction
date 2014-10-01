@@ -1,0 +1,10 @@
+noiseredection
+1.0
+とりあえず動く(binary->binary)
+1.1
+spinの表現行列を書きだすようにする
+matrix
+1.1
+complexを使えるように拡張する
+1.3
+完成品
