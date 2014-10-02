@@ -206,8 +206,17 @@ cout << "make	rep"<<endl;
 //----------------------------------------------
 void call_data(int it,int tmp,int j,COMPLEX data[XYZnodeSites]){
             char fname[200]={0};
-            sprintf(fname,"%s/Projwave/xyz/Spin%s-%s/ts%02d/OmgOmgwave_PH1.+%03d+%03d.%s-%06d",in_dir_path.c_str(),SinkSpin.c_str(),SrcSpin.c_str(),tshift[tmp],it,tshift[tmp],base,j);//hachi
-            cout << fname<<"reading now"<<endl;
+	    int mj = j+251;
+	    if(mj< 430)
+	      {
+	      }
+	    else if(429 < mj)
+	      {
+		mj = mj + 1;
+	      }
+	    sprintf(fname,"%s/Projwave/xyz/spin%sz+0.%sz+0/%s-b-%05d0/NBSwave.+%03d+%03d.000.000.000.%s-b-%05d0.DD_NR.DD_NR",in_dir_path.c_str(),SinkSpin.c_str(),SrcSpin.c_str(),base,mj,it,tshift[tmp],base,mj);
+
+		cout << fname<<"reading now"<<endl;
             read_data(&(fname[0]),data);
     cout<<"it = "<<it<<" Tshift count = "<<tmp<<"  conf =  "<<j<<"reading"<<endl;
 }
@@ -233,7 +242,7 @@ int read_data(char fname[300],COMPLEX data[XYZnodeSites]){
 		cout <<"reading data size is    ;;"<<id-1<<endl;
 		tmp=tmp+1;
 	}
-	//endian_convert((double*)data,XYZnodeSites*2);
+	endian_convert((double*)data,XYZnodeSites*2);
 	for (int point=0; point<id; point++) {
 		//data[point]=rand()%24;
 		//cout << data[point]<<endl;
